@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    margin: 10px;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h3 {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 100px;
+    text-align: center;
+    width: 150px;
+}
+
+span {
+    color: white;
+}
+
+.comment {
+    color: #5c6370;
+}
+.operand {
+    color: #56d6d6;
+}
+.integer {
+    color: #ff3c00;
+}
+.real {
+    color: #ffcc00;
+}
+.variable {
+    color: #f78c6c;
+}
+.palabraReservada {
+    color: #cb6cfe;
+}
+.string {
+    color: #c3e88d;
+}
