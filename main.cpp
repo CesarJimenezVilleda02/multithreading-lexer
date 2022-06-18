@@ -15,7 +15,7 @@
 * File: main.cpp
 * Author: Pablo César Jiménez Villeda y Ariann Fernando Arriaga Alcántara
 * Description:
-* Date: 17/06/2022
+* Date: 18/06/2022
 *************************************************************/
 using namespace std;
 

@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./styles.css"><title>Actividad integral</title></head><body><div class="tokens"><h3 class="variable">Variables</h3><h3 class="palabraReservada">Palabra Reservada</h3><h3 class="operand">Operadores</h3><h3 class="integer">Enteros</h3><h3 class="real">Reales</h3><h3 class="string">Cadena</h3><h3 class="comment">Comentarios</h3></div><br>
+</br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">iostream</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">pthread</span>
+<span>.</span>
+<span class="variable">h</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">stdlib</span>
+<span>.</span>
+<span class="variable">h</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">stdio</span>
+<span>.</span>
+<span class="variable">h</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">unistd</span>
+<span>.</span>
+<span class="variable">h</span>
+<span>></span>
+</br></br></br></br><span class="variable">using</span>
+<span> </span>
+<span class="variable">namespace</span>
+<span> </span>
+<span class="variable">std</span>
+<span>;</span>
+</br></br></br></br><span class="palabraReservada">const</span>
+<span> </span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">BABOONS</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">20</span>
+<span>;</span>
+</br></br><span class="palabraReservada">const</span>
+<span> </span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">MAX</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">3</span>
+<span>;</span>
+</br></br><span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">crossing</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+</br></br></br></br><span class="comment">// 0 -> left</span>
+</br></br><span class="comment">// 1 -> right</span>
+</br></br><span class="variable">bool</span>
+<span> </span>
+<span class="variable">direction</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+</br></br></br></br></br></br><span class="comment">// mutex to block crossers and direction</span>
+</br></br><span class="variable">pthread_mutex_t</span>
+<span> </span>
+<span class="variable">lock_crossers</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="variable">PTHREAD_MUTEX_INITIALIZER</span>
+<span>;</span>
+</br></br><span class="comment">// babbons crossing to left and right</span>
+</br></br><span class="variable">pthread_cond_t</span>
+<span> </span>
+<span class="variable">to_left</span>
+<span>,</span>
+<span> </span>
+<span class="variable">to_right</span>
+<span>;</span>
+</br></br><span class="comment">// mutex for left and right baboons/.</span>
+</br></br><span class="variable">pthread_mutex_t</span>
+<span> </span>
+<span class="variable">mutex_to_left</span>
+<span>,</span>
+<span> </span>
+<span class="variable">mutex_to_right</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="variable">PTHREAD_MUTEX_INITIALIZER</span>
+<span>;</span>
+</br></br></br></br><span class="comment">// Babuinos que cruzan a la derecha</span>
+</br></br><span class="palabraReservada">void</span>
+<span class="operand">*</span>
+<span> </span>
+<span class="variable">crossRight</span>
+<span class="operand">(</span>
+<span class="palabraReservada">void</span>
+<span> </span>
+<span class="operand">*</span>
+<span class="variable">arg</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span class="variable">pthread_mutex_lock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Waiting to cross to right"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="palabraReservada">while</span>
+<span class="operand">(</span>
+<span class="integer">1</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="variable">pthread_cond_wait</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_right</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span class="variable">direction</span>
+<span> </span>
+<span class="operand">=</span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">1</span>
+<span> </span>
+<span>&</span>
+<span>&</span>
+<span> </span>
+<span class="variable">crossing</span>
+<span> </span>
+<span><</span>
+<span> </span>
+<span class="variable">MAX</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">crossing</span>
+<span class="operand">+</span>
+<span class="operand">+</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_unlock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">sleep</span>
+<span class="operand">(</span>
+<span class="integer">1</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_lock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Babbon crossed to right"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">crossing</span>
+<span class="operand">-</span>
+<span class="operand">-</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="comment">// ultimo babuino</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span class="variable">crossing</span>
+<span> </span>
+<span class="operand">=</span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">direction</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span>!</span>
+<span class="variable">direction</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_cond_broadcast</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_left</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_unlock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="palabraReservada">break</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span class="variable">pthread_exit</span>
+<span class="operand">(</span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>}</span>
+</br></br></br></br><span class="comment">// Babuinos que cruzan a la izquierda</span>
+</br></br><span class="palabraReservada">void</span>
+<span class="operand">*</span>
+<span> </span>
+<span class="variable">crossLeft</span>
+<span class="operand">(</span>
+<span class="palabraReservada">void</span>
+<span> </span>
+<span class="operand">*</span>
+<span class="variable">arg</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span class="variable">pthread_mutex_lock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Waiting to cross to left"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="palabraReservada">while</span>
+<span class="operand">(</span>
+<span class="integer">1</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="variable">pthread_cond_wait</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_left</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span class="variable">direction</span>
+<span> </span>
+<span class="operand">=</span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span> </span>
+<span>&</span>
+<span>&</span>
+<span> </span>
+<span class="variable">crossing</span>
+<span> </span>
+<span><</span>
+<span> </span>
+<span class="variable">MAX</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">crossing</span>
+<span class="operand">+</span>
+<span class="operand">+</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_unlock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">sleep</span>
+<span class="operand">(</span>
+<span class="integer">1</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_lock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Babbon crossed to left"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">crossing</span>
+<span class="operand">-</span>
+<span class="operand">-</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="comment">// ultimo babuino</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span class="variable">crossing</span>
+<span> </span>
+<span class="operand">=</span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">direction</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span>!</span>
+<span class="variable">direction</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_cond_broadcast</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_right</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_mutex_unlock</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">lock_crossers</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="palabraReservada">break</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span>}</span>
+</br></br><span>	</span>
+<span class="variable">pthread_exit</span>
+<span class="operand">(</span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>}</span>
+</br></br></br></br><span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">main</span>
+<span class="operand">(</span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">argc</span>
+<span>,</span>
+<span> </span>
+<span class="palabraReservada">char</span>
+<span class="operand">*</span>
+<span> </span>
+<span class="variable">argv</span>
+<span>[</span>
+<span>]</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span class="variable">pthread_t</span>
+<span> </span>
+<span class="variable">baboons_thread</span>
+<span>[</span>
+<span class="variable">BABOONS</span>
+<span>]</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="variable">pthread_cond_init</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_left</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span class="variable">pthread_cond_init</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_right</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span class="palabraReservada">for</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">i</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+<span> </span>
+<span class="variable">i</span>
+<span> </span>
+<span><</span>
+<span> </span>
+<span class="variable">BABOONS</span>
+<span>;</span>
+<span> </span>
+<span class="variable">i</span>
+<span class="operand">+</span>
+<span class="operand">+</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span class="variable">i</span>
+<span> </span>
+<span>%</span>
+<span> </span>
+<span class="integer">2</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="comment">// Primer arg ref al hilo, segundo config, tercero ref a funcion y cuarto arg para funcion</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>	</span>
+<span class="variable">pthread_create</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">baboons_thread</span>
+<span>[</span>
+<span class="variable">i</span>
+<span>]</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">crossRight</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>	</span>
+<span>}</span>
+<span> </span>
+<span class="palabraReservada">else</span>
+<span> </span>
+<span class="variable">pthread_create</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">baboons_thread</span>
+<span>[</span>
+<span class="variable">i</span>
+<span>]</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">crossLeft</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>}</span>
+</br></br></br></br><span>	</span>
+<span class="variable">pthread_cond_broadcast</span>
+<span class="operand">(</span>
+<span>&</span>
+<span class="variable">to_left</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span>	</span>
+<span class="palabraReservada">for</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">i</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+<span> </span>
+<span class="variable">i</span>
+<span> </span>
+<span><</span>
+<span> </span>
+<span class="variable">BABOONS</span>
+<span>;</span>
+<span> </span>
+<span class="variable">i</span>
+<span class="operand">+</span>
+<span class="operand">+</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="comment">// El primer argumento es el hilo y el segundo es un puntero que obtiene</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="comment">// el valor del hilo</span>
+</br></br><span>	</span>
+<span>	</span>
+<span class="variable">pthread_join</span>
+<span class="operand">(</span>
+<span class="variable">baboons_thread</span>
+<span>[</span>
+<span class="variable">i</span>
+<span>]</span>
+<span>,</span>
+<span> </span>
+<span class="variable">NULL</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span>	</span>
+<span>}</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span class="palabraReservada">return</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+</br></br><span>}</span>
+</br></body></html>

@@ -1,0 +1,100 @@
+#include <iostream>
+#include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+using namespace std;
+
+const int BABOONS = 20;
+const int MAX = 3;
+int crossing = 0;
+
+// 0 -> left
+// 1 -> right
+bool direction = 0;
+
+
+// mutex to block crossers and direction
+pthread_mutex_t lock_crossers = PTHREAD_MUTEX_INITIALIZER;
+// babbons crossing to left and right
+pthread_cond_t to_left, to_right;
+// mutex for left and right baboons/.
+pthread_mutex_t mutex_to_left, mutex_to_right = PTHREAD_MUTEX_INITIALIZER;
+
+// Babuinos que cruzan a la derecha
+void* crossRight(void *arg) {
+	pthread_mutex_lock(&lock_crossers);
+	cout << "Waiting to cross to right" << endl;
+	while(1) {
+		pthread_cond_wait(&to_right, &lock_crossers);
+		if(direction == 1 && crossing < MAX) {
+			crossing++;
+			pthread_mutex_unlock(&lock_crossers);
+			sleep(1);
+
+			pthread_mutex_lock(&lock_crossers);
+			cout << "Babbon crossed to right" << endl;
+			crossing--;
+
+			// ultimo babuino
+			if(crossing == 0) {
+				direction = !direction;
+				pthread_cond_broadcast(&to_left);
+			}
+			pthread_mutex_unlock(&lock_crossers);
+			break;
+		}
+	}
+	pthread_exit(NULL);
+}
+
+// Babuinos que cruzan a la izquierda
+void* crossLeft(void *arg) {
+	pthread_mutex_lock(&lock_crossers);
+	cout << "Waiting to cross to left" << endl;
+	while(1) {
+		pthread_cond_wait(&to_left, &lock_crossers);
+		if(direction == 0 && crossing < MAX) {
+			crossing++;
+			pthread_mutex_unlock(&lock_crossers);
+			sleep(1);
+
+			pthread_mutex_lock(&lock_crossers);
+			cout << "Babbon crossed to left" << endl;
+			crossing--;
+
+			// ultimo babuino
+			if(crossing == 0) {
+				direction = !direction;
+				pthread_cond_broadcast(&to_right);
+			}
+			pthread_mutex_unlock(&lock_crossers);
+			break;
+		}
+	}
+	pthread_exit(NULL);
+}
+
+int main(int argc, char* argv[]) {
+	pthread_t baboons_thread[BABOONS];
+	pthread_cond_init(&to_left, NULL);
+	pthread_cond_init(&to_right, NULL);
+
+	for (int i = 0; i < BABOONS; i++) {
+		if(i % 2) {
+			// Primer arg ref al hilo, segundo config, tercero ref a funcion y cuarto arg para funcion
+			pthread_create(&baboons_thread[i], NULL, &crossRight, NULL);
+		} else pthread_create(&baboons_thread[i], NULL, &crossLeft, NULL);
+	}
+
+	pthread_cond_broadcast(&to_left);
+
+	for (int i = 0; i < BABOONS; i++) {
+		// El primer argumento es el hilo y el segundo es un puntero que obtiene
+		// el valor del hilo
+		pthread_join(baboons_thread[i], NULL);
+	}
+
+  return 0;
+}

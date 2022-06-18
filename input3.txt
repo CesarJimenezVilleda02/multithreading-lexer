@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+#include "../include/Shipping.h"
+#include "../include/Envelope.h"
+#include "../include/Package.h"
+
+using namespace std;
+
+int main() {
+    // Shipping figures = Shipping();
+    // Shipping figures("Juan Jimenez", "Carlos Vallarta", "Calle independencia 8", "Calle Chestarsito 9", "Queretaro", "San Miguel", "Queretaro", "Queretaro", 12344, 42400, 150);
+    // Shipping smallToys = Shipping("Alfonso Telles", "Marcos Trejo", "Alpes 10", "Cantinas Netas 12", "Huichapan", "El Marques", "Hidalgo", "Queretaro", 123455, 44555, 210);
+    // Shipping mallCards = Shipping("Juan Garcia", "Raul Guerra", "Calle Juarez 13", "Calle pinos 4", "Puerto Vallarta", "La Paz", "Oaxaca", "Baja California Sur", 123456, 908762, 500);
+    // Shipping videogameKey = Shipping("Agripino Suarez", "Isabella de Arco", "Ojo Trejo 14", "Campanas 12", "Aguascalientes", "Ensenada", "Aguascalientes", "Ensenada", 633336, 555888, 220);
+
+    //Envelope(string _nameShipper, string _nameRecipient,  string _addressShipper, string _addressRecipient, string _cityShipper, string _cityRecipient, string _stateShipper, string _stateRecipient, int _zipcodeShipper, int _zipcodeRecipient, float _shipmentCost, float _length, float _width, float _additionalCharge)
+    Envelope loveLetter("Flavio Ruvalcaba", "Ariann Arriaga", "Calle bellas flores 3", "Calle de los muertos 5", "Pachuca", "Cancun", "Hidalgo", "Quintana Roo", 55666, 89997, 25, 31, -30);
+    Envelope moneyEnvelope("Pablo Chargoy", "Ariann Alcantara", "Pino Suarez 3", "Mintiscuaro 14", "Mexicali", "Tijuana", "Baja California", "Baja California", 444444, 898989, 12, 12, 120);
+    Envelope acceptanceLetter("Carlos Ibarra", "Cesar Jimenez", "Calle ninos heroes 12", "Avenida Jaibas", "Los cabos", "Campeche", "Baja California Sur", "Campeche", 444555, 898787, 40, 10, 100);
+    Envelope visaDocumentation("Angie Rivera", "Liz Reyes", "Calle Lomas 2", "Avenida Chiapaneca 1", "Manzanillo", "Tuxtla", "Colima", "Chiapas", 555888,222333,-12,40,50);
+
+    //Shipping
+    Package starWarsFigures("Lupita Lopez", "Roberto Martinez", "Calle Juanita 23", "Calle Lomas del calvario 12", "Chilpancingo", "Tula", "Guerrero", "Hidalgo", 488522, 112266, 5, 12, 25, 10, 20);
+    Package mustang("Sofia Moreno", "Andrea Moreno", "Los juzgados 12", "Calle Bixi 11", "Huichapan", "Monterrey", "Hidalgo", "Monterrey", 42400, 50700, 5, 10, 50, -6, 30);
+    Package chair("Edgar Jimenez", "Pancho Villa", "Juan Arreola 12", "escutia 12", "Hermosillo", "Cuautla", "Tabasco", "Morelos", 222777, 454849, 50, 50, 10, 5, 10);
+    Package table("Juan Jimenez", "Carlos Vallarta", "Calle independencia 8", "Calle Chestarsito 9", "Queretaro", "San Miguel", "Queretaro", "Queretaro", 12344, 42400, 5, 5, 10, 12, -5);
+
+    // vector <Shipping*> Shipment = {&figures, &smallToys, &mallCards, &videogameKey, &loveLetter, &moneyEnvelope, &acceptanceLetter, &visaDocumentation, &starWarsFigures, &mustang, &chair, &table};
+    vector <Shipping*> Shipment = {&loveLetter, &moneyEnvelope, &acceptanceLetter, &visaDocumentation, &starWarsFigures, &mustang, &chair, &table};
+
+    cout << "Shipment labels and prices: \n" << endl;
+
+    //iterating though the Shipping vector
+    float accumulatedCost;
+    int currentLabel = 1;
+    for (Shipping * item : Shipment ) {
+        cout << "--------------------- Mail Label " << currentLabel << " ---------------------" << endl;
+        if(!(*item).getIsShipmentValid()) {
+            cout << "**ALERT: The data provided for the current shipment is invalid (cost will not be added to total)**" << endl;
+        } else {
+            accumulatedCost += (*item).calculateCost();
+        }
+
+        cout << "From: " << (*item).getNameShipper() << endl;
+        cout << "Address: " << (*item).getAddressShipper() << ", " << (*item).getCityShipper() << ", " << (*item).getStateShipper() << endl << endl;
+
+        cout << "To: " << (*item).getNameRecipient() << endl;
+        cout << "Address: " << (*item).getAddressRecipient() << ", " << (*item).getCityRecipient() << ", " << (*item).getStateRecipient() << endl << endl;
+
+        cout << "Shipment calculated cost: $" << (*item).calculateCost() << endl << endl;
+
+        currentLabel++;
+    }
+
+    cout << "**** The total cost of the shipment is $" << accumulatedCost << endl;
+
+    return 0;
+}

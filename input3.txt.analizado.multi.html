@@ -1,0 +1,752 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./styles.css"><title>Actividad integral</title></head><body><div class="tokens"><h3 class="variable">Variables</h3><h3 class="palabraReservada">Palabra Reservada</h3><h3 class="operand">Operadores</h3><h3 class="integer">Enteros</h3><h3 class="real">Reales</h3><h3 class="string">Cadena</h3><h3 class="comment">Comentarios</h3></div><br>
+</br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">iostream</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">vector</span>
+<span>></span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span><</span>
+<span class="variable">string</span>
+<span>></span>
+</br></br></br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span class="string">"../include/Shipping.h"</span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span class="string">"../include/Envelope.h"</span>
+</br></br><span class="palabraReservada">#include</span>
+<span> </span>
+<span class="string">"../include/Package.h"</span>
+</br></br></br></br><span class="variable">using</span>
+<span> </span>
+<span class="variable">namespace</span>
+<span> </span>
+<span class="variable">std</span>
+<span>;</span>
+</br></br></br></br><span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">main</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// Shipping figures = Shipping();</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// Shipping figures("Juan Jimenez", "Carlos Vallarta", "Calle independencia 8", "Calle Chestarsito 9", "Queretaro", "San Miguel", "Queretaro", "Queretaro", 12344, 42400, 150);</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// Shipping smallToys = Shipping("Alfonso Telles", "Marcos Trejo", "Alpes 10", "Cantinas Netas 12", "Huichapan", "El Marques", "Hidalgo", "Queretaro", 123455, 44555, 210);</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// Shipping mallCards = Shipping("Juan Garcia", "Raul Guerra", "Calle Juarez 13", "Calle pinos 4", "Puerto Vallarta", "La Paz", "Oaxaca", "Baja California Sur", 123456, 908762, 500);</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// Shipping videogameKey = Shipping("Agripino Suarez", "Isabella de Arco", "Ojo Trejo 14", "Campanas 12", "Aguascalientes", "Ensenada", "Aguascalientes", "Ensenada", 633336, 555888, 220);</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">//Envelope(string _nameShipper, string _nameRecipient,  string _addressShipper, string _addressRecipient, string _cityShipper, string _cityRecipient, string _stateShipper, string _stateRecipient, int _zipcodeShipper, int _zipcodeRecipient, float _shipmentCost, float _length, float _width, float _additionalCharge)</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Envelope</span>
+<span> </span>
+<span class="variable">loveLetter</span>
+<span class="operand">(</span>
+<span class="string">"Flavio Ruvalcaba", "Ariann Arriaga", "Calle bellas flores 3", "Calle de los muertos 5", "Pachuca", "Cancun", "Hidalgo", "Quintana Roo"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">55666</span>
+<span>,</span>
+<span> </span>
+<span class="integer">89997</span>
+<span>,</span>
+<span> </span>
+<span class="integer">25</span>
+<span>,</span>
+<span> </span>
+<span class="integer">31</span>
+<span>,</span>
+<span> </span>
+<span class="integer">-30</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Envelope</span>
+<span> </span>
+<span class="variable">moneyEnvelope</span>
+<span class="operand">(</span>
+<span class="string">"Pablo Chargoy", "Ariann Alcantara", "Pino Suarez 3", "Mintiscuaro 14", "Mexicali", "Tijuana", "Baja California", "Baja California"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">444444</span>
+<span>,</span>
+<span> </span>
+<span class="integer">898989</span>
+<span>,</span>
+<span> </span>
+<span class="integer">12</span>
+<span>,</span>
+<span> </span>
+<span class="integer">12</span>
+<span>,</span>
+<span> </span>
+<span class="integer">120</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Envelope</span>
+<span> </span>
+<span class="variable">acceptanceLetter</span>
+<span class="operand">(</span>
+<span class="string">"Carlos Ibarra", "Cesar Jimenez", "Calle ninos heroes 12", "Avenida Jaibas", "Los cabos", "Campeche", "Baja California Sur", "Campeche"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">444555</span>
+<span>,</span>
+<span> </span>
+<span class="integer">898787</span>
+<span>,</span>
+<span> </span>
+<span class="integer">40</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span>,</span>
+<span> </span>
+<span class="integer">100</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Envelope</span>
+<span> </span>
+<span class="variable">visaDocumentation</span>
+<span class="operand">(</span>
+<span class="string">"Angie Rivera", "Liz Reyes", "Calle Lomas 2", "Avenida Chiapaneca 1", "Manzanillo", "Tuxtla", "Colima", "Chiapas"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">555888</span>
+<span>,</span>
+<span class="integer">222333</span>
+<span>,</span>
+<span class="integer">-12</span>
+<span>,</span>
+<span class="integer">40</span>
+<span>,</span>
+<span class="integer">50</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">//Shipping</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Package</span>
+<span> </span>
+<span class="variable">starWarsFigures</span>
+<span class="operand">(</span>
+<span class="string">"Lupita Lopez", "Roberto Martinez", "Calle Juanita 23", "Calle Lomas del calvario 12", "Chilpancingo", "Tula", "Guerrero", "Hidalgo"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">488522</span>
+<span>,</span>
+<span> </span>
+<span class="integer">112266</span>
+<span>,</span>
+<span> </span>
+<span class="integer">5</span>
+<span>,</span>
+<span> </span>
+<span class="integer">12</span>
+<span>,</span>
+<span> </span>
+<span class="integer">25</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span>,</span>
+<span> </span>
+<span class="integer">20</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Package</span>
+<span> </span>
+<span class="variable">mustang</span>
+<span class="operand">(</span>
+<span class="string">"Sofia Moreno", "Andrea Moreno", "Los juzgados 12", "Calle Bixi 11", "Huichapan", "Monterrey", "Hidalgo", "Monterrey"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">42400</span>
+<span>,</span>
+<span> </span>
+<span class="integer">50700</span>
+<span>,</span>
+<span> </span>
+<span class="integer">5</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span>,</span>
+<span> </span>
+<span class="integer">50</span>
+<span>,</span>
+<span> </span>
+<span class="integer">-6</span>
+<span>,</span>
+<span> </span>
+<span class="integer">30</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Package</span>
+<span> </span>
+<span class="variable">chair</span>
+<span class="operand">(</span>
+<span class="string">"Edgar Jimenez", "Pancho Villa", "Juan Arreola 12", "escutia 12", "Hermosillo", "Cuautla", "Tabasco", "Morelos"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">222777</span>
+<span>,</span>
+<span> </span>
+<span class="integer">454849</span>
+<span>,</span>
+<span> </span>
+<span class="integer">50</span>
+<span>,</span>
+<span> </span>
+<span class="integer">50</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span>,</span>
+<span> </span>
+<span class="integer">5</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">Package</span>
+<span> </span>
+<span class="variable">table</span>
+<span class="operand">(</span>
+<span class="string">"Juan Jimenez", "Carlos Vallarta", "Calle independencia 8", "Calle Chestarsito 9", "Queretaro", "San Miguel", "Queretaro", "Queretaro"</span>
+<span>,</span>
+<span> </span>
+<span class="integer">12344</span>
+<span>,</span>
+<span> </span>
+<span class="integer">42400</span>
+<span>,</span>
+<span> </span>
+<span class="integer">5</span>
+<span>,</span>
+<span> </span>
+<span class="integer">5</span>
+<span>,</span>
+<span> </span>
+<span class="integer">10</span>
+<span>,</span>
+<span> </span>
+<span class="integer">12</span>
+<span>,</span>
+<span> </span>
+<span class="integer">-5</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">// vector <Shipping*> Shipment = {&figures, &smallToys, &mallCards, &videogameKey, &loveLetter, &moneyEnvelope, &acceptanceLetter, &visaDocumentation, &starWarsFigures, &mustang, &chair, &table};</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">vector</span>
+<span> </span>
+<span><</span>
+<span class="variable">Shipping</span>
+<span class="operand">*</span>
+<span>></span>
+<span> </span>
+<span class="variable">Shipment</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span>{</span>
+<span>&</span>
+<span class="variable">loveLetter</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">moneyEnvelope</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">acceptanceLetter</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">visaDocumentation</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">starWarsFigures</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">mustang</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">chair</span>
+<span>,</span>
+<span> </span>
+<span>&</span>
+<span class="variable">table</span>
+<span>}</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Shipment labels and prices: \n"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="comment">//iterating though the Shipping vector</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="palabraReservada">float</span>
+<span> </span>
+<span class="variable">accumulatedCost</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="palabraReservada">int</span>
+<span> </span>
+<span class="variable">currentLabel</span>
+<span> </span>
+<span class="operand">=</span>
+<span> </span>
+<span class="integer">1</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="palabraReservada">for</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="variable">Shipping</span>
+<span> </span>
+<span class="operand">*</span>
+<span> </span>
+<span class="variable">item</span>
+<span> </span>
+<span>:</span>
+<span> </span>
+<span class="variable">Shipment</span>
+<span> </span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"--------------------- Mail Label " << currentLabel << " ---------------------"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="palabraReservada">if</span>
+<span class="operand">(</span>
+<span>!</span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">getIsShipmentValid</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span class="operand">)</span>
+<span> </span>
+<span>{</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"**ALERT: The data provided for the current shipment is invalid (cost will not be added to total)**"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span>}</span>
+<span> </span>
+<span class="palabraReservada">else</span>
+<span> </span>
+<span>{</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">accumulatedCost</span>
+<span> </span>
+<span class="operand">+</span>
+<span class="operand">=</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">calculateCost</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span>}</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"From: "</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">getNameShipper</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Address: " << (*item).getAddressShipper() << ", " << (*item).getCityShipper() << ", "</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">getStateShipper</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"To: "</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">getNameRecipient</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Address: " << (*item).getAddressRecipient() << ", " << (*item).getCityRecipient() << ", "</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">getStateRecipient</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"Shipment calculated cost: $"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="operand">(</span>
+<span class="operand">*</span>
+<span class="variable">item</span>
+<span class="operand">)</span>
+<span>.</span>
+<span class="variable">calculateCost</span>
+<span class="operand">(</span>
+<span class="operand">)</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">currentLabel</span>
+<span class="operand">+</span>
+<span class="operand">+</span>
+<span>;</span>
+</br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span>}</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="variable">cout</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="string">"**** The total cost of the shipment is $"</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">accumulatedCost</span>
+<span> </span>
+<span><</span>
+<span><</span>
+<span> </span>
+<span class="variable">endl</span>
+<span>;</span>
+</br></br></br></br><span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+<span class="palabraReservada">return</span>
+<span> </span>
+<span class="integer">0</span>
+<span>;</span>
+</br></br><span>}</span>
+</br></body></html>
